@@ -1,0 +1,23 @@
+<div class="container" style="background-color: white!important;">
+    <div class="row row1">
+        <h4 style="color: dodgerblue;"> Profile</h4>
+    </div>
+    <div class="row row2">
+        <div class="column left">
+            <div class="form-group">
+                <img [src]="url" height="290" width="250" alt="Img" ><br>
+                
+            </div>
+            <div class="row row3">
+                <!-- <label for="inputUpload" class="custom-file-upload label-text">upload your photo</label> -->
+                <button type="file" for="abc"  class="btn btn-primary btn1 ">Edit Photo</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="abc" type="file"  (change)="onSelectFile($event)">            
+                <button type="submit" class="btn btn-primary btn2">Edit Profile</button>
+            </div>
+        </div>
+        <div class="column right">
+           <p id="info">I’m Caroline Kassidy and Im above 20 years and you can send your emails to <span style="color: dodgerblue;">caroline.kassidy@publicis.com</span>. I live in the state of Alaska. I like to play hockey, football and reading books. And please send me newsletters. Please reach out to me on my phone number.</p>
+           <button type="submit" class="btn btn-primary btn3">I Agree</button>
+        </div>
+    </div>
+</div>

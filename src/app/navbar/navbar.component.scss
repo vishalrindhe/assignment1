@@ -1,0 +1,69 @@
+.nav-link{
+    display: block;
+    float: left;
+    padding: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration-color: #1cc3e8;
+    color: white;
+}
+.navbar-nav{
+    float: right; 
+    padding-left: 24%;
+    width: 100%;
+    display: block;
+    padding-bottom: 19px;
+}
+.active{
+    border-top: 2px solid deepskyblue;
+}
+.nact{
+    padding-top: 8px;
+}
+.navbar{
+    float: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 55px;
+    width: 100%;
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: 3px;
+    font-size:  21px;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: inherit;
+    white-space: nowrap;
+}
+.container-fluid {
+    height: 125px;
+    background-color: dodgerblue;
+    max-width: 100%;
+}
+a {
+    background-color: transparent;
+    color: #007bff;
+    text-decoration: none;
+}
+.navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+}
+.navbar-expand-lg {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+.navbar-light .navbar-brand {
+    color: black;
+}
+.lb{
+    background-color: #1cc3e8;
+    height: 30px;
+    width: 110px;
+    padding-left: 4px;
+}
+.lbs{
+    padding-left: 96px;
+}

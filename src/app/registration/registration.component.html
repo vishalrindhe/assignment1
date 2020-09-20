@@ -1,0 +1,246 @@
+<!-- <router-outlet></router-outlet>  -->
+
+
+<form #userForm='ngForm'  *ngIf="!submitted" (ngSubmit)="onSubmit()" novalidate >
+  <div class="container">
+    <!-- <h2>Modal Example</h2> -->
+    <!-- Button to Open the Modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Register
+    </button> -->
+
+    
+    <div class="container text-center">
+      
+    </div>
+
+    <!-- The Modal -->
+    <!-- <div class="modal form-group"  id="myModal"> -->
+      <div class="modal form-group">
+      <div class="modal-dialog modal-lg"  >
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header modal-background">
+            <h4 class="modal-title modal-header-text" style="font-size:20pt; padding-left:30px;">Register</h4>
+            <button type="button" class="close  modal-close text-white" data-dismiss="modal" style="font-size:25pt; padding-right: 30px;">&times;</button>
+          </div>
+          
+          <div class="row">
+            <div class="column left" >
+              
+            <div class="form-group">
+              <img [src]="url" height="180" width="170" alt="Img" ><br>
+              <label for="inputUpload" class="custom-file-upload label-text">upload your photo</label>
+              <input id="inputUpload" type="file"  (change)="onSelectFile($event)">            
+            </div>
+           
+          </div>
+<!--style="background-color:#000;"-->
+            <div class="column right">
+
+              <div class="form-inline">
+                <div class="form-group ">          
+                  <input placeholder="First Name" size=16 style="height:40px;font-size:14pt; width: 220px;" 
+                  type="text" #firstName="ngModel" 
+                  [class.is-invalid]="firstName.invalid && firstName.touched" 
+                  required 
+                  pattern="[a-zA-Z]{1,20}"
+                  name="firstName" 
+                  value="abc"
+                  [ngModel]="userModel.firstName" 
+                  class="form-control"
+                  >
+                  <!--this is for single validation and displaying error-->
+                </div> 
+                            
+                <div class="form-group ">
+                  <input  placeholder="Last Name" size=12 style="height:40px;font-size:14pt;width: 185px;"
+                  type="text" #lastName="ngModel" 
+                  [class.is-invalid]="lastName.invalid && lastName.touched" 
+                  required 
+                  pattern="[a-zA-Z]{1,20}"
+                  name="lastName" 
+                  class="form-control small-dimension"
+                  [ngModel]="userModel.lastName">
+                </div>  
+              </div>
+                  <div>
+                    <div *ngIf="firstName.errors && (firstName.valid || firstName.touched)">
+                      <small class="text-danger" *ngIf="firstName.errors.required " >First Name is required</small>
+                    <small class="text-danger" *ngIf="firstName.errors.pattern">Maximum 20 Characters only.</small>
+                  </div>
+                  <div *ngIf="lastName.errors && (lastName.valid || lastName.touched)">
+                    <small class="text-danger" *ngIf="lastName.errors.required " >First Name is required</small>
+                  <small class="text-danger" *ngIf="lastName.errors.pattern">Maximum 20 Characters only.</small>
+                </div>
+              </div>
+
+             <br>
+
+                <div class="form-group">
+                  <input  placeholder="Email" size=35 style="height:40px; font-size:14pt;width: 435px;"
+                  type="email" #email="ngModel" 
+                  [class.is-invalid]="email.invalid && email.touched" 
+                  required 
+                  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  name="email" 
+                  [ngModel]="userModel.email" 
+                  class="form-control">
+                    <div *ngIf="email.errors && (email.valid || email.touched)">
+                      <small class="text-danger" *ngIf="email.errors.required " >Email is required</small>
+                     <small class="text-danger" *ngIf="email.errors.pattern">Please provide valid email</small>
+                   </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <input  placeholder="(987) 654-3210"  style="height:40px;font-size:14pt; width: 435px;"
+                  type="tel" #phone="ngModel" 
+                  required pattern="^[7-9][0-9]{9}$" 
+                  [class.is-invalid]="phone.invalid && phone.touched" 
+                  name="phone" value="1"
+                  [ngModel]="" 
+                  class="form-control">
+                  <div *ngIf="phone.errors && (phone.valid || phone.touched)">
+                    <small class="text-danger" *ngIf="phone.errors.required">Phone number is required and must be 10 digits</small>
+                    <small class="text-danger" *ngIf="phone.errors.pattern">Indian number must starts from digits 7,8,9 only and must contain 10 digits</small>
+                  </div>
+                </div>
+
+                <!--<div class="margin"> -->
+                  <!-- Modal body -->
+                      <div class="form-group ">
+                        <!-- here i have changed primary session color of mat-slider- from indigo-pink.css which is theme -->
+                        <div class="inlineinput">
+                          <label class="gray">Age &nbsp;</label>
+                          <div>
+                          <mat-slider min=20 max=60 value=20 thumbLabel color="primary"  (input)="onChange($event)" > </mat-slider>
+                        </div>
+                          
+                          <!-- change the dimension of box-agemin/max from style.css-->            
+                        </div>
+                          <div class="box-minmax">
+                            <span class="box-agemin" >20</span><span class="box-agemax" >60</span>
+                          </div>
+                      </div>
+        <!--
+                      <div class="form-group">
+                        <input  placeholder="Address" size=37 style="height:40px;font-size:14pt; width: 438px;"
+                        type="text" #address="ngModel" 
+                        [class.is-invalid]="address.invalid && address.touched" 
+                        required 
+                        pattern="[a-zA-Z]*"
+                        name="address" 
+                        [ngModel]="userModel.address" 
+                        class="form-control">
+                        <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required</small>
+                      </div>
+
+        -->
+
+                      <div class="form-group">
+                        <select class="custom-select width form-control"
+                        style="height:40px;font-size:14pt; width: 438px;"
+                        #address="ngModel" [ngModel]="userModel.address"
+                        class="custom-select width form-control"
+                        name="address"
+                        (blur)="validateAddress(address.value)" 
+                        (change)="validateAddress(address.value)" 
+                        [class.is-invalid]="addressHasError && address.touched">
+                          <option value="default">Address</option>
+                          <option *ngFor="let address of addresses">{{address}}</option>
+                        </select>
+                        <br>
+                        <small class="text-danger" [class.d-none]="!addressHasError || address.untouched">Please select address field</small>
+                      <div *ngIf="!addressHasError">
+                          <div class="form-group">
+                            <br>
+                            <input  placeholder="Address Line 1" style="height:40px;font-size:14pt; width: 438px;"
+                            type="text" #addressline1="ngModel" 
+                            [class.is-invalid]="addressline1.invalid && addressline1.touched" 
+                            required 
+                            pattern="[a-zA-Z 0-9 ._/-,]{1-100}"
+                            name="addressline1" 
+                            [ngModel]="userModel.addressline1" 
+                            class="form-control">
+                            <small class="text-danger" [class.d-none]="addressline1.valid || addressline1.untouched">Address Line 1 is required</small>
+                          </div>
+                      </div>
+                      <div *ngIf="!addressHasError">
+                          <div class="form-group">
+                            <input  placeholder="Address Line 2" style="height:40px;font-size:14pt; width: 438px;"
+                            type="text" #addressline2="ngModel" 
+                            [class.is-invalid]="addressline2.invalid && addressline2.touched" 
+                            required 
+                            pattern="[a-zA-Z 0-9 ._/-,]{1-100}"
+                            name="addressline2" 
+                            [ngModel]="userModel.addressline2" 
+                            class="form-control">
+                            <small class="text-danger" [class.d-none]="addressline2.valid || addressline2.untouched">Address Line 2 is required</small>
+                          </div>
+                      </div>
+                    </div>
+        
+                        <div class="form-group">
+                          <select class="custom-select width form-control"
+                          style="height:40px;font-size:14pt; width: 438px;"
+                          #state="ngModel"
+                          [ngModel]="userModel.state" 
+                          name="state"
+                          (blur)="validateState(state.value)" 
+                          (change)="validateState(state.value)" 
+                          class="custom-select" 
+                          [class.is-invalid]="stateHasError && state.touched" >
+                          <option value="default">State</option>
+                            <option *ngFor="let state of states" > {{ state }} </option>
+                          </select>
+                          <br>
+                          <small class="text-danger" [class.d-none]="!stateHasError || state.untouched">Please select State</small>
+                        </div>
+        
+                    <div class="form-group">
+                        <select class="custom-select width form-control"
+                        style="height:40px;font-size:14pt; width: 438px;"
+                        #country="ngModel" [ngModel]="userModel.country"
+                        class="custom-select width form-control"
+                        name="country"
+                        (blur)="validateCountry(country.value)" 
+                        (change)="validateCountry(country.value)" 
+                        [class.is-invalid]="countryHasError && country.touched">
+                          <option value="default">Country</option>
+                          <option *ngFor="let country of countries">{{country}}</option>
+                        </select>
+                        <br>
+                        <small class="text-danger" [class.d-none]="!countryHasError || country.untouched">Please select Country</small>
+                    </div>
+
+                    <div class="form-group">
+                      <app-chip></app-chip>
+                    </div>
+
+                    <div class="form-group" style="padding-top: 30px;padding-bottom: 20px;">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" #subscribe=ngModel name="subscribe" [ngModel]="userModel.subscribe" class="form-check-input">&nbsp;&nbsp;
+                      <label class="form-check-label" >
+                        subscribe to newsletter
+                      </label>
+                  </div>
+                    <br>
+                    <br>
+            </div>
+          </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer" style="padding-right: 73px;">
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-secondary" size=5 style="height:40px; width: 125px;font-size:14pt;" data-dismiss="modal">Cancel</button>
+              </div>  &nbsp;&nbsp;
+              <div class="form-group">
+                  <button [disabled]="userForm.form.invalid || stateHasError || countryHasError" class="btn btn-primary" type="submit" class="btn btn-primary"  style="height:40px; width: 125px; font-size:14pt;">Submit</button>
+              </div>                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>
