@@ -9,8 +9,10 @@ export class ProfileComponent implements OnInit {
 
   url="./assets/capture.JPG";
 
-  onSelectFile(event){
+  onSelectFile(event) {
+    console.log(event)
     if(event.target.files) {
+      console.log(event.target.files)
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload =( event: any) => {

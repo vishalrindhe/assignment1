@@ -99,6 +99,7 @@ import { Reg } from './reg';
     // ProfileMainComponent,
     ChipComponent,
     // RegistrationComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
@@ -167,11 +168,7 @@ import { Reg } from './reg';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    Reg
-    
-    
- 
-  ],
+ ],
   providers: [],
   bootstrap: [AppComponent]
 })
