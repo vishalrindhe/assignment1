@@ -5,13 +5,16 @@
     <div class="row row2">
         <div class="column left">
             <div class="form-group">
-                <img [src]="url" height="290" width="250" alt="Img" ><br>
+                <img [src]="url" height="800" width="800" alt="Img" ><br>
                 
             </div>
             <div class="row row3">
-                <!-- <label for="inputUpload" class="custom-file-upload label-text">upload your photo</label> -->
-                <button type="file" for="abc" (click)="profile.click()" class="btn btn-primary btn1 ">Edit Photo</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input #profile id="abc" type="file"  (change)="onSelectFile($event)">            
+                
+                <input type="button" for="inputUpload" (click)="profile.click()" class="btn btn1" accept="image/*"  value="Edit Photo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <button type="file"  (click)="profile.click()" class="btn btn-primary btn1 ">Edit Photo</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
+                <input #profile id="inputUpload" type="file"  (change)=" onSelectFile($event)">            
+                <!-- <input #profile type='file' formControlName="img_name" class="form-control" (change)="readUrl($event)"> -->
+
                 <button type="submit" class="btn btn-primary btn2">Edit Profile</button>
             </div>
         </div>
