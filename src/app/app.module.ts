@@ -8,7 +8,9 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
-// import { HomeComponent } from './home/home.component';
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+// import { MaterialModule } from '@demo-app/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FancyBorderComponent } from './fancy-border/fancy-border.component';
 // import { ProfileMainComponent } from './profile-main/profile-main.component';

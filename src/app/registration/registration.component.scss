@@ -6,9 +6,15 @@
 //   background: linear-gradient(to right top, #ffffff, #a9a9a9);
 // } 
 
+/* To disable horizonatal scrolling , x for horizontal*/
+::ng-deep .mat-dialog-container {
+  overflow-x: hidden !important;
+}
+
+
 .small-dimension{
   position: absolute;
-  left: 250px;
+  left: 280px;
 }
 
 .inlineinput div {
@@ -26,7 +32,9 @@ background:#2d2d2d;}
 
 label.label-text{
   color: #0080f0;
-  padding-left:20px;
+  padding-left:40px;
+  padding-top: 10px;
+  font-size:13pt;
 }
 
 #inputUpload {
@@ -43,20 +51,21 @@ label.label-text{
   text-decoration: underline;
 }
 .column {
-  float: inherit;
+  // float: inherit;
   position: relative;
   top: 40px;
  /* Should be removed. Only for demonstration */
 }
 
 .left  {
-  left: 60px;
-  width: 25%;
+  left: 40px;
+  // background-color: aqua;
 }
 
 .right {
-  left: 90px;
-  width: 70%;
+  left: 70px;
+  top: 40px !important; 
+  // background-color: lawngreen;
 }
 
 .row:after {
@@ -66,7 +75,7 @@ label.label-text{
 }
 
   mat-slider {
-    width: 405px; 
+    width: 460px; 
     color : gray;
   }
 
@@ -84,8 +93,10 @@ label.label-text{
 
   .modal-background{
     background: #0080f0;
+    width:auto ;
     
   }
+  
 
   .modal-header-text{
     color: white;
@@ -108,11 +119,11 @@ label.label-text{
   }
     
   .box-agemin{
-    padding-left: 40px;
+    padding-left: 20px;
   }
 
   .box-agemax{
-    padding-right: 60px;
+    padding-right: 20px;
     }
 
   
