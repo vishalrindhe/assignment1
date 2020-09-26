@@ -5,21 +5,21 @@
     <div class="row row2">
         <div class="column left">
             <div class="form-group">
-                <img [src]="url" height="800" width="800" alt="Img" ><br>
+                <img [src]="profile?.img" height="800" width="800" alt="Img" ><br>
                 
             </div>
             <div class="row row3">
                 
-                <input type="button" for="inputUpload" (click)="profile.click()" class="btn btn1" accept="image/*"  value="Edit Photo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" for="inputUpload"  class="btn btn1" accept="image/*"  value="Edit Photo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <!-- <button type="file"  (click)="profile.click()" class="btn btn-primary btn1 ">Edit Photo</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
-                <input #profile id="inputUpload" type="file"  (change)=" onSelectFile($event)">            
+                <input id="inputUpload" type="file">            
                 <!-- <input #profile type='file' formControlName="img_name" class="form-control" (change)="readUrl($event)"> -->
 
                 <button type="submit" class="btn btn-primary btn2">Edit Profile</button>
             </div>
         </div>
         <div class="column right">
-           <p id="info">I’m Caroline Kassidy and Im above 20 years and you can send your emails to <span style="color: dodgerblue;">caroline.kassidy@publicis.com</span>. I live in the state of Alaska. I like to play hockey, football and reading books. And please send me newsletters. Please reach out to me on my phone number.</p>
+           <p id="info">I’m {{profile?.firstName}} {{profile?.lastName}} and Im above {{profile?.age}} years and you can send your emails to <span style="color: dodgerblue;">{{profile?.email}}</span>. I live in the state of {{profile?.state}}. I like to play <span *ngFor = "let tags of tag; last as l">{{tags}}<span *ngIf = "!l">, </span></span>. And please send me newsletters. Please reach out to me on my phone number.</p>
            <button type="submit" class="btn btn-primary btn3">I Agree</button>
         </div>
     </div>

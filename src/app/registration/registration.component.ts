@@ -13,6 +13,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 
 import { Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
 
 export interface Tile {
   color: string;
@@ -28,7 +29,10 @@ export interface Tile {
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  private _router: any;
+  reg: Reg;
 
+  
   constructor(
     public dialogRef: MatDialogRef<HomeComponent>,
     private _enrollmentService: EnrollmentService,
@@ -44,19 +48,42 @@ export class RegistrationComponent implements OnInit {
   countryHasError = true;
   addressHasError = true;
   submitted=false;
+  ImageInvalid=false;
   errorMsg = '';
  
-  url="./assets/blank.jpeg";
+  url:any="./assets/blank.jpeg";
 
   onSelectFile(event){
-    if(event.target.files) {
+    let me = this
+    if(event.target.files && event.target.files[0]) {
+      this.checkResolution(event);
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload =( event: any) => {
-        this.url=event.target.result;
+      reader.onload =() => {
+        me.url=reader.result;
+        console.log(me.url)
       }
       
     }
+  }
+
+  checkResolution(event) {
+    let file = event.target.files && event.target.files[0];
+    var img = new Image();
+    img.src = window.URL.createObjectURL(file);
+    var data: boolean = true;
+    var me = this;
+    img.onload = function() {
+      var width = img.naturalWidth,
+          height = img.naturalHeight;
+      window.URL.revokeObjectURL(img.src);
+      console.log(width,height)
+      if (width == 310 && height == 325) {
+        me.ImageInvalid = false;
+      } else {
+        me.ImageInvalid = true;
+      }
+    };
   }
   
   states = [ "Andhra Pradesh","Arunachal Pradesh",
@@ -71,8 +98,20 @@ export class RegistrationComponent implements OnInit {
 
   addresses = [ "Home", "Company"];
 
-  userModel = new Reg ( "", "", "" , 9876543210, 2 , "default","","","default","default" ,true);
- 
+  userModel: Reg = {
+    img: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: null,
+    age: 20,
+    address: "default",
+    addressline1: "",
+    addressline2: "",
+    state: "default",
+    country: "default",
+    tag: "",
+    subscribe: false};
 
   // onSubmit(){
   //   this.submitted = true;
@@ -111,28 +150,52 @@ export class RegistrationComponent implements OnInit {
       this.addressHasError = false;
     }
   }
+
+  selectedtags($event){
+    this.userModel.tag = JSON.stringify($event);
+  }
+
   onSubmit(){
     this.submitted = true;
+    this.userModel.img = this.url;
+    console.log(this.userModel);
     this._enrollmentService.enroll(this.userModel)
       .subscribe(
-        data => console.log('Success!',data),
-        error => this.errorMsg = error.statusText
+        data => {
+          this.router.navigate(["profile/"+data.id])
+          console.log('Success!',data)},
+          error => this.errorMsg = error.statusText
       )
   }
+
   onChange(event) {
     console.log(event);
+    this.userModel.age = event.value;
   }
 
   options: FormGroup;
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
+  
 
   ngOnInit(): void {
   }
 
-  goToPage(pageName:string):void{
-    this.router.navigate([`${pageName}`])
+  enrollReg(userForm: NgForm): void {
+    this._enrollmentService.enroll(this.reg).subscribe(
+      (data: Reg) => {
+        // log the employee object after the post is completed
+        console.log(data);
+        userForm.reset();
+        this._router.navigate(['list']);
+      },
+      (error: any) => { console.log(error); }
+    );
   }
+
+  // goToPage(pageName:string):void{
+  //   this.router.navigate([`${pageName}`])
+  // }
 
 }
 

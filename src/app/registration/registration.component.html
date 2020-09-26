@@ -1,4 +1,4 @@
-<form #userForm='ngForm' (ngSubmit)="onSubmit()" novalidate>
+<form #userForm='ngForm' id="form" (ngSubmit)="onSubmit()" novalidate>
   <mat-toolbar style="width: 850px;
                 background-color: #0080f0;
                 font-size: 20pt;
@@ -17,7 +17,10 @@
           <div class="form-group">
             <img [src]="url" height="230" width="220" alt="Img" ><br>
             <label for="inputUpload" class="custom-file-upload label-text">upload your photo</label>
-            <input id="inputUpload" type="file"  (change)="onSelectFile($event)">            
+            <input id="inputUpload" type="file"  (change)="onSelectFile($event)"><br>            
+            <small class="text-danger" *ngIf="ImageInvalid" >
+               Please select image dimension 310*325 is required
+            </small>
           </div>
       </div>
       
@@ -34,7 +37,7 @@
                 pattern="[a-zA-Z]{1,20}"
                 name="firstName" 
                 value="abc"
-                [ngModel]="userModel.firstName" 
+                [(ngModel)]="userModel.firstName" 
                 class="form-control">
             </div>
             <div class="form-group ">
@@ -46,9 +49,9 @@
                 pattern="[a-zA-Z]{1,20}"
                 name="lastName" 
                 class="form-control small-dimension"
-                [ngModel]="userModel.lastName">
+                [(ngModel)]="userModel.lastName">
             </div> 
-         </div>
+          </div>
                 <div class="form-inline">
                   <div *ngIf="firstName.errors && (firstName.valid || firstName.touched)">
                     <small class="text-danger" *ngIf="firstName.errors.required " >
@@ -78,7 +81,7 @@
                 required 
                 pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 name="email" 
-                [ngModel]="userModel.email" 
+                [(ngModel)]="userModel.email" 
                 class="form-control">
                   <div *ngIf="email.errors && (email.valid || email.touched)">
                     <small class="text-danger" *ngIf="email.errors.required " >Email is required</small>
@@ -92,7 +95,7 @@
                 required pattern="^[7-9][0-9]{9}$" 
                 [class.is-invalid]="phone.invalid && phone.touched" 
                 name="phone" value="1"
-                [ngModel]="" 
+                [(ngModel)]="userModel.phone" 
                 class="form-control">
                 <div *ngIf="phone.errors && (phone.valid || phone.touched)">
                   <small class="text-danger" *ngIf="phone.errors.required">Phone number is required and must be 10 digits</small>
@@ -103,7 +106,7 @@
               <div class="form-group ">
                 <div class="form-inline">
                   <label class="gray">Age &nbsp;</label>
-                  <mat-slider min=20 max=60 value=20 thumbLabel color="primary" width=480px (input)="onChange($event)" >
+                  <mat-slider  min=20 max=60 value=20 thumbLabel color="primary" width=480px (input)="onChange($event)" >
                   </mat-slider>
                 </div>    
                   <!-- change the dimension of box-agemin/max from style.css-->            
@@ -112,10 +115,10 @@
                 </div>
               </div>
 
-              <div class="form-group">
+            <div class="form-group">
                 <select class="custom-select width form-control"
                 style="height:40px;font-size:16pt;width: 480px;"
-                #address="ngModel" [ngModel]="userModel.address"
+                #address="ngModel" [(ngModel)]="userModel.address"
                 class="custom-select width form-control"
                 name="address"
                 (blur)="validateAddress(address.value)" 
@@ -135,7 +138,7 @@
                     required 
                     pattern="[a-zA-Z 0-9 ._/-,]{1-100}"
                     name="addressline1" 
-                    [ngModel]="userModel.addressline1" 
+                    [(ngModel)]="userModel.addressline1" 
                     class="form-control">
                     <small class="text-danger" [class.d-none]="addressline1.valid || addressline1.untouched">Address Line 1 is required</small>
                   </div>
@@ -148,7 +151,7 @@
                     required 
                     pattern="[a-zA-Z 0-9 ._/-,]{1-100}"
                     name="addressline2" 
-                    [ngModel]="userModel.addressline2" 
+                    [(ngModel)]="userModel.addressline2" 
                     class="form-control">
                     <small class="text-danger" [class.d-none]="addressline2.valid || addressline2.untouched">Address Line 2 is required</small>
                   </div>
@@ -159,7 +162,7 @@
               <select class="custom-select width form-control"
               style="height:40px;font-size:16pt;width: 480px;"
               #state="ngModel"
-              [ngModel]="userModel.state" 
+              [(ngModel)]="userModel.state" 
               name="state"
               (blur)="validateState(state.value)" 
               (change)="validateState(state.value)" 
@@ -175,7 +178,7 @@
         <div class="form-group">
             <select class="custom-select width form-control"
             style="height:40px;font-size:16pt;width: 480px;"
-            #country="ngModel" [ngModel]="userModel.country"
+            #country="ngModel" [(ngModel)]="userModel.country"
             class="custom-select width form-control"
             name="country"
             (blur)="validateCountry(country.value)" 
@@ -189,34 +192,32 @@
         </div>
 
         <div class="form-group">
-          <app-chip></app-chip>
+          <app-chip (tags)="selectedtags($event)"></app-chip>
         </div>
 
         <div class="form-group form-inline" style="padding-top: 30px;padding-bottom: 20px; margin-left: -15px; z-index: 25;">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" #subscribe=ngModel name="subscribe" [ngModel]="userModel.subscribe" class="form-check-input">&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" #subscribe=ngModel name="subscribe" [(ngModel)]="userModel.subscribe" class="form-check-input">&nbsp;&nbsp;
           <label >
             subscribe to newsletter
           </label>
         </div>
         <br>
-        <br>
-
-
-      </div>
-    </div>
-    <div style="display:flex !important; justify-content: flex-end !important; ">
+            
+    <div style="display:flex !important; padding-left: 220px !important;">
       <div class="form-group">
-        <button type="button" class="btn btn-outline-secondary" mat-dialog-close size=5 style="height:40px; width: 125px;font-size:14pt;" data-dismiss="modal">Cancel</button>
-      </div>  &nbsp;&nbsp;
+          <button type="button" class="btn btn-outline-secondary" mat-dialog-close size=5 style="height:40px; width: 125px;font-size:14pt;" data-dismiss="modal">Cancel</button>
+      </div>  &nbsp;&nbsp;&nbsp;
       <div class="form-group">
-          <button [disabled]="userForm.form.invalid || stateHasError || countryHasError" 
+          <button [disabled]="userForm.form.invalid || stateHasError || countryHasError || addressHasError" 
             class="btn btn-primary" type="submit" 
             style="height:40px; width: 125px; font-size:14pt;"
-            (click)="goToPage('profile')"
+            (click)="onSubmit()"
             mat-dialog-close>
             Submit
-        </button>
+          </button>
       </div>                
     </div>
+    </div>
   </div>
+</div>
 </form>

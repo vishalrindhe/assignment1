@@ -1,15 +1,16 @@
 export class Reg {
-    constructor(
-        public firstName: string,
-        public lastName:string,
-        public email: string,
-        public phone: number,
-        public age: number,
-        public address:string,
-        public addressline1:string,
-        public addressline2:string,
-        public state:string,
-        public country:string,
-        public subscribe: boolean
-    ) {}
+       img: string;
+       firstName: string;
+       lastName:string;
+       email: string;
+       phone: number;
+       age: number;
+       address: string
+       addressline1: string
+       addressline2: string
+       state: string
+       country: string
+       tag: string
+       subscribe: boolean
+  
 }

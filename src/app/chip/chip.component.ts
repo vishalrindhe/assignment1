@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { ElementRef, ViewChild} from '@angular/core';
@@ -23,11 +23,11 @@ export class ChipComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Cricket','Football','Hockey'];
-  allFruits: string[] = ['Cricket','Football','Hockey','Traveling','Exercise','Going to the theater',
-                        'Dancing','Cooking','Doing stuff outdoors','Politics','Pets'];
+  fruits: string[] = [];
+  allFruits: string[] = [];
     @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+    @Output() tags = new EventEmitter();
+    @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor() {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
@@ -42,6 +42,7 @@ export class ChipComponent implements OnInit {
     // Add our fruit
     if ((value || '').trim()) {
       this.fruits.push(value.trim());
+      this.tags.emit(this.fruits);
     }
 
     // Reset the input value
@@ -57,6 +58,7 @@ export class ChipComponent implements OnInit {
 
     if (index >= 0) {
       this.fruits.splice(index, 1);
+      this.tags.emit(this.fruits);
     }
   }
 

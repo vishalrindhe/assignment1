@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Reg } from './reg';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
+import { ReturnStatement } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,17 @@ import { throwError } from 'rxjs';
 export class EnrollmentService {
 
   _url = 'http://localhost:3000/enroll';
+  listRegs: any;
+  listregs: any;
 
   constructor(private _http: HttpClient) { }
 
-  enroll(reg: Reg){
+  enroll(reg): Observable<any>{
     return this._http.post<any>(this._url, reg)
-        .pipe(catchError(this.errorHandler))
+  } 
+  getProfile(id): Observable<any>{
+    return this._http.get<any>(this._url+"/"+id)
   }
-
-  errorHandler(error: HttpErrorResponse){
-    return throwError(error);
-  }
-
+  
 }
+ 
