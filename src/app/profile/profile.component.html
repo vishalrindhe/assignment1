@@ -1,22 +1,26 @@
 <div class="container" style="background-color: white!important;">
     <div class="row row1">
-        <h4 style="color: dodgerblue;"> Profile</h4>
+        <label style="color: dodgerblue; font-size: 25px;">Profile</label>
     </div>
     <div class="row row2">
         <div class="column left">
             <div class="form-group">
-                <img [src]="profile?.img" height="800" width="800" alt="Img" ><br>
+                <img [src]="profile?.img" alt="Img" ><br>
                 
             </div>
             <div class="row row3">
                 
                 <input type="button" for="inputUpload"  class="btn btn1" accept="image/*"  value="Edit Photo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <!-- <button type="file"  (click)="profile.click()" class="btn btn-primary btn1 ">Edit Photo</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
-                <input id="inputUpload" type="file">            
-                <!-- <input #profile type='file' formControlName="img_name" class="form-control" (change)="readUrl($event)"> -->
-
-                <button type="submit" class="btn btn-primary btn2">Edit Profile</button>
-            </div>
+                <input id="inputUpload" type="file" (change)="onSelectFile($event)"> 
+                <button type="button" (click)="onSelectFile($event)" class="btn btn-primary btn1">Photo</button>   
+                <small class="text-danger" *ngIf="ImageInvalid" >
+                    Please select image dimension 310*325 is required
+                 </small>
+                <button type="submit" (click)="openDialogUpdate()" class="btn btn-primary btn2">Edit Profile</button>
+            </div>  <input for="inputUpload" type="button" class="custom-file-upload label-text" value="Edit Photo">upload your photo
+            <input id="inputUpload" type="file"  (change)="onSelectFile($event)"><br>            
+          
         </div>
         <div class="column right">
            <p id="info">I’m {{profile?.firstName}} {{profile?.lastName}} and Im above {{profile?.age}} years and you can send your emails to <span style="color: dodgerblue;">{{profile?.email}}</span>. I live in the state of {{profile?.state}}. I like to play <span *ngFor = "let tags of tag; last as l">{{tags}}<span *ngIf = "!l">, </span></span>. And please send me newsletters. Please reach out to me on my phone number.</p>
@@ -24,3 +28,4 @@
         </div>
     </div>
 </div>
+

@@ -205,14 +205,12 @@
             
     <div style="display:flex !important; padding-left: 220px !important;">
       <div class="form-group">
-          <button type="button" class="btn btn-outline-secondary" mat-dialog-close size=5 style="height:40px; width: 125px;font-size:14pt;" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-outline-secondary" #cancel mat-dialog-close size=5 style="height:40px; width: 125px;font-size:14pt;" data-dismiss="modal">Cancel</button>
       </div>  &nbsp;&nbsp;&nbsp;
       <div class="form-group">
-          <button [disabled]="userForm.form.invalid || stateHasError || countryHasError || addressHasError" 
-            class="btn btn-primary" type="submit" 
-            style="height:40px; width: 125px; font-size:14pt;"
-            (click)="onSubmit()"
-            mat-dialog-close>
+          <!-- <button [disabled]="userForm.form.invalid || stateHasError || countryHasError || addressHasError"  -->
+           <button class="btn btn-primary" type="submit" style="height:40px; width: 125px; font-size:14pt;"
+            (click)="onSubmit()" [disabled]="ImageInvalid" mat-dialog-close>
             Submit
           </button>
       </div>                

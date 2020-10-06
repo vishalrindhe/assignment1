@@ -11,8 +11,6 @@ import { ReturnStatement } from '@angular/compiler';
 export class EnrollmentService {
 
   _url = 'http://localhost:3000/enroll';
-  listRegs: any;
-  listregs: any;
 
   constructor(private _http: HttpClient) { }
 
@@ -23,5 +21,9 @@ export class EnrollmentService {
     return this._http.get<any>(this._url+"/"+id)
   }
   
+  update(reg, id): Observable<any>{
+    return this._http.patch<any>(this._url+"/"+id, reg)
+  }
+
 }
  

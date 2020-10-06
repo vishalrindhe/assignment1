@@ -12,11 +12,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, public dialog: MatDialog) {}
 
-  
-  goToPage(pageName:string):void{
-    this.router.navigate([`${pageName}`])
-  }
-
   ngOnInit(): void {
   }
 

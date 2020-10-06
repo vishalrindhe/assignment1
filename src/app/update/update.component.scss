@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// html,body {
+//  height: 100%;
+//   background: linear-gradient(to right top, #ffffff, #a9a9a9);
+// } 
+
+/* To disable horizonatal scrolling , x for horizontal*/
+::ng-deep .mat-dialog-container {
+  overflow-x: hidden !important;
+}
+
+
+.small-dimension{
+  position: absolute;
+  left: 280px;
+}
+
+.inlineinput div {
+  display: inline;
+}
+
+input[type=file]{
+padding:10px;
+background:#2d2d2d;}
+
+
+label.label-text{
+  color: #0080f0;
+  padding-left:40px;
+  padding-top: 10px;
+  font-size:13pt;
+}
+
+// #inputUpload {
+//   display: none;
+// }
+
+// .custom-file-upload {
+//   cursor: pointer;
+//   font-size: inherit;
+//   color: #0c090d;
+// }
+
+// .custom-file-upload:hover {
+//   text-decoration: underline;
+// }
+.column {
+  // float: inherit;
+  position: relative;
+  top: 40px;
+ /* Should be removed. Only for demonstration */
+}
+
+// .left  {
+//   left: 40px;
+//   // background-color: aqua;
+// }
+
+.right {
+  left: 40px;
+  top: 40px !important; 
+  // background-color: lawngreen;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  mat-slider {
+    width: 460px; 
+    color : gray;
+  }
+
+  .gray{
+    color: gray;
+  }
+
+  .margin {
+    margin: 20px 50px 15px 35px; ;
+  }
+
+  .width{
+    width: 440px;
+  }
+
+  .modal-background{
+    background: #0080f0;
+    width:auto ;
+    
+  }
+  
+
+  .modal-header-text{
+    color: white;
+  }
+
+  .modal-close{
+    color: white;
+    background : white;
+  }
+
+  .box-minmax{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: gray;
+      :first-child{
+      margin-left: 10px;
+    }
+  }
+    
+  .box-agemin{
+    padding-left: 20px;
+  }
+
+  .box-agemax{
+    padding-right: 20px;
+    }
+
+  

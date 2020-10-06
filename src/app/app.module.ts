@@ -87,6 +87,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 
 import { Reg } from './reg';
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { Reg } from './reg';
     // ProfileMainComponent,
     ChipComponent,
     // RegistrationComponent
-    routingComponents
+    routingComponents,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
